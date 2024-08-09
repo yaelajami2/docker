@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
             // Check if dataTable is null or empty, handle errors if needed
             if (dataTable == null || dataTable.Rows.Count == 0)
             {
-                return NotFound(); // Or return appropriate response
+                return NotFound("uurtuyuretywe"); // Or return appropriate response
             }
 
             // Convert DataTable to a list of anonymous objects or a custom DTO
