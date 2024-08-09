@@ -31,3 +31,5 @@ EXPOSE 80
 
 # הפקודה שתופעל כשמתחילים את הקונטיינר
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+EXPOSE 80
+EXPOSE 443
