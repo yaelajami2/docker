@@ -1,5 +1,5 @@
 # שלב 1: בניית התמונה (build stage)
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 
 # הגדר את ספריית העבודה
 WORKDIR /app
@@ -17,7 +17,8 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 
 # שלב 2: יצירת התמונה הסופית (runtime stage)
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+
 
 # הגדר את ספריית העבודה
 WORKDIR /app
