@@ -29,4 +29,4 @@ COPY --from=build /app/out .
 EXPOSE 80
 
 # הפקודה שתופעל כשמתחילים את הקונטיינר
-ENTRYPOINT ["dotnet", "YourApp.dll"]
+ENTRYPOINT ["dotnet", "WebApplication1.dll"]
