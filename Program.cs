@@ -19,11 +19,19 @@ namespace WebApplication1
 
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-           Host.CreateDefaultBuilder(args)
-               .ConfigureWebHostDefaults(webBuilder =>
-               {
-                   webBuilder.UseStartup<Startup>();
-                   webBuilder.UseUrls("http://*:80", "https://*:443");
-               });
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureKestrel((context, options) =>
+                    {
+                        options.ListenAnyIP(80); // HTTP
+                options.ListenAnyIP(443, listenOptions =>
+                        {
+                            listenOptions.UseHttps("/path/to/your/certificate.pfx", "your-certificate-password");
+                        });
+                    })
+                    .UseStartup<Startup>();
+                });
+
     }
 }
