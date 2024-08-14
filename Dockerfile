@@ -1,9 +1,6 @@
 # שלב 1: בניית התמונה (build stage)
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 
-# הגדר את ספריית העבודה
-WORKDIR /app
-
 # העתק את קובץ התיאור של הפרויקט (.csproj) ואת קובץ הפתרון (אם יש)
 COPY *.csproj ./
 
@@ -26,9 +23,8 @@ WORKDIR /app
 # העתק את האפליקציה מהשלב הקודם
 COPY --from=build /app/out .
 
-# הגדר את הפורט שבו האפליקציה תרוץ
-EXPOSE 80
-
 # הפקודה שתופעל כשמתחילים את הקונטיינר
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+WORKDIR /app
 EXPOSE 80
+EXPOSE 443
