@@ -11,27 +11,26 @@ namespace WebApplication1
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
         }
 
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.ConfigureKestrel((context, options) =>
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+                Host.CreateDefaultBuilder(args)
+                    .ConfigureWebHostDefaults(webBuilder =>
                     {
-                        options.ListenAnyIP(80); // HTTP
-                options.ListenAnyIP(443, listenOptions =>
-                        {
-                            listenOptions.UseHttps("/path/to/your/certificate.pfx", "your-certificate-password");
-                        });
-                    })
-                    .UseStartup<Startup>();
-                });
+                        webBuilder.UseStartup<Startup>();
+
+                    });
+                
+// ודא ש-Startup מוגדרת כאן
+            });
 
     }
 }
