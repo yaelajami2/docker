@@ -1,27 +1,27 @@
-# שלב 1: בניית התמונה (build stage)
+# Use the official .NET image from the Docker Hub
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
 
-# העתק את קובץ התיאור של הפרויקט (.csproj) ואת קובץ הפתרון (אם יש)
+# Copy csproj and restore as distinct layers
 COPY *.csproj ./
-
-# התקן את התלויות
 RUN dotnet restore
 
-# העתק את שאר הקבצים של הפרויקט
+# Copy the rest of the code
 COPY . ./
+RUN dotnet build -c Release -o /app/build
 
-# בניית האפליקציה
-RUN dotnet publish -c Release -o out
+# Publish the application
+RUN dotnet publish -c Release -o /app/publish
 
-# שלב 2: יצירת התמונה הסופית (runtime stage)
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
-
-
-# העתק את האפליקציה מהשלב הקודם
-COPY --from=build /app/out .
-
-# הפקודה שתופעל כשמתחילים את הקונטיינר
-ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+# Final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+
+
 EXPOSE 80
 EXPOSE 443
+
+
