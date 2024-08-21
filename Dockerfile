@@ -20,8 +20,5 @@ COPY --from=build /app/publish .
 
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
 
-
 EXPOSE 80
 EXPOSE 443
-
-
