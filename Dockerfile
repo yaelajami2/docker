@@ -1,5 +1,5 @@
 # Use the official .NET image from the Docker Hub
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
@@ -14,7 +14,7 @@ RUN dotnet build -c Release -o /app/build
 RUN dotnet publish -c Release -o /app/publish
 
 # Final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
 
