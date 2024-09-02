@@ -1,24 +1,18 @@
-# Use the official .NET SDK image for the build stage
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# Base image for build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["WebApplication1.csproj", "WebApplication1/"]
+RUN dotnet restore "WebApplication1/WebApplication1.csproj"
+COPY . .
+WORKDIR "/src/WebApplication1"
+RUN dotnet build "WebApplication1.csproj" -c Release -o /app/build
+
+# Publish stage
+FROM build AS publish
+RUN dotnet publish "WebApplication1.csproj" -c Release -o /app/publish
+
+# Final image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
 WORKDIR /app
-
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
-
-# Copy the rest of the code and build the application
-COPY . ./
-RUN dotnet build -c Release -o /app/build
-
-# Publish the application
-RUN dotnet publish -c Release -o /app/publish
-
-# Use the official .NET runtime image for the final stage
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
-WORKDIR /app
-COPY --from=build /app/publish .
-
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
-
-EXPOSE 80
-EXPOSE 443
