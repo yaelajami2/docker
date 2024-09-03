@@ -41,6 +41,7 @@ namespace WebApplication1
                                .AllowAnyMethod()
                                .AllowAnyHeader();
                     });
+
             });
             services.AddControllers();
             // Other service configura
@@ -54,6 +55,7 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+          
             app.UseCors("AllowAllOrigins");
             if (env.IsDevelopment())
             {
@@ -72,6 +74,9 @@ namespace WebApplication1
             {
                 endpoints.MapControllers();
             });
+     
+
+            
         }
     }
 }
