@@ -15,7 +15,7 @@ RUN dotnet publish "WebApplication1.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 8080
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "WebApplication1.dll"]
 
 
