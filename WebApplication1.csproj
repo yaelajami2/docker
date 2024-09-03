@@ -15,8 +15,8 @@
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 	</ItemGroup>
 	  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="./Program.cs" />
+    <Compile Include="./Startup.cs" />
     <!-- Include other source files here -->
   </ItemGroup>
 
