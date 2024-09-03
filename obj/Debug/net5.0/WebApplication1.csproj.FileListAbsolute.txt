@@ -127,4 +127,3 @@ C:\Users\user1\Desktop\שנה ב\test-small\WebApplication1\WebApplication1\obj\
 C:\Users\user1\Desktop\שנה ב\test-small\WebApplication1\WebApplication1\obj\Debug\net5.0\ref\WebApplication1.dll
 C:\Users\user1\Desktop\שנה ב\test-small\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.pdb
 C:\Users\user1\Desktop\שנה ב\test-small\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
-C:\Users\user1\Desktop\שנה ב\test-small\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.csproj.AssemblyReference.cache
