@@ -17,7 +17,7 @@ namespace WebApplication1
           .ConfigureWebHostDefaults(webBuilder =>
           {
             // מקבל את הפורט מהסביבה, אם לא נמצא משתמש ב-5000
-            var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+            var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
               webBuilder.UseStartup<Startup>();
               webBuilder.UseUrls($"http://0.0.0.0:{port}");
           });
