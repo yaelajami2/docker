@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 
 # Copy the .csproj file and restore dependencies
-COPY ["WebApplication1/WebApplication1.csproj", "WebApplication1/"]
+COPY ["./WebApplication1.csproj", "WebApplication1/"]
 WORKDIR "/src/WebApplication1"
 RUN dotnet restore
 
