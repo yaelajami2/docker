@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Copy the build output
 COPY --from=build /app/publish .
-ENV ASPNETCORE_URLS=https://+:443;http://+:80
+ENV ASPNETCORE_URLS=http://+:8080
 # Run the application
 ENTRYPOINT ["dotnet", "api.dll"]
 EXPOSE 80
