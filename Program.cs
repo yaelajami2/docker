@@ -1,27 +1,26 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace WebApplication1
+namespace api
 {
-   
     public class Program
     {
-       
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-
-
         }
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-      Host.CreateDefaultBuilder(args)
-          .ConfigureWebHostDefaults(webBuilder =>
-          {
-            // מקבל את הפורט מהסביבה, אם לא נמצא משתמש ב-5000
-            var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-              webBuilder.UseStartup<Startup>();
-              webBuilder.UseUrls($"http://0.0.0.0:{port}");
-          });
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

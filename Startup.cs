@@ -11,18 +11,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Controllers;
 
-namespace WebApplication1
+namespace api
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            
             Configuration = configuration;
-            
-
         }
 
         public IConfiguration Configuration { get; }
@@ -31,24 +27,10 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
 
-    
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                    });
-
-            });
             services.AddControllers();
-            // Other service configura
-            services.AddScoped<ManagQuery>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "api", Version = "v1" });
             });
         }
 
@@ -58,23 +40,19 @@ namespace WebApplication1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
             }
 
-            //app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+
             app.UseRouting();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

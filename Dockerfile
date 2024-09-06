@@ -1,27 +1,27 @@
-# Base image for build
+# Use the official .NET SDK image
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /src
 
-# Copy the .csproj file and restore dependencies
-COPY ["./WebApplication1.csproj", "WebApplication1/"]
-WORKDIR "/src/WebApplication1"
-RUN dotnet restore
-
-# Copy the remaining source code and build
-COPY . .
-RUN dotnet build "WebApplication1.csproj" -c Release -o /app/build
-RUN dotnet publish "WebApplication1.csproj" -c Release -o /app/publish
-
-# Final image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
+# Set the working directory
 WORKDIR /app
-ENV ASPNETCORE_URLS=http://+:8080
-COPY --from=build /app/publish .
-EXPOSE 8080
-ENTRYPOINT ["dotnet", "WebApplication1.dll"]
 
+# Copy the project file and restore dependencies
+COPY ./api.csproj ./
+RUN dotnet restore ./api.csproj
 
+# Copy the rest of the application code
+COPY . ./
 
+# Build the application
+RUN dotnet build ./api.csproj -c Release -o /app/build
 
+# Use the official .NET runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 
+# Set the working directory
+WORKDIR /app
 
+# Copy the build output
+COPY --from=build /app/build .
+
+# Run the application
+ENTRYPOINT ["dotnet", "api.dll"]
