@@ -1,0 +1,11 @@
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\api.exe
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\appsettings.Development.json
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\appsettings.json
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\api.dll
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\api.deps.json
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\api.runtimeconfig.json
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\api.pdb
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\Microsoft.OpenApi.dll
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user1\Desktop\שנה ב\test-small\‏‏api_past\api\output\Swashbuckle.AspNetCore.SwaggerUI.dll
