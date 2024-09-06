@@ -5,9 +5,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
 # Copy the project file and restore dependencies
-COPY ./api.csproj ./
-RUN dotnet restore ./api.csproj
-
+COPY *.csproj ./
+RUN dotnet restore
 # Copy the rest of the application code
 COPY . ./
 
@@ -27,3 +26,4 @@ ENV ASPNETCORE_URLS=https://+:443;http://+:80
 ENTRYPOINT ["dotnet", "api.dll"]
 EXPOSE 80
 EXPOSE 443
+
