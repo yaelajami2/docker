@@ -41,16 +41,13 @@ namespace api
             app.Run();
 
         }
-
- public static IHostBuilder CreateHostBuilder(string[] args) =>
+public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseStartup<Startup>();
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-            {
-                webBuilder.UseUrls("http://*:80");
-            }
+            webBuilder.UseStartup<Startup>()
+                      .UseUrls("http://0.0.0.0:8080"); // ודא שזה 8080
         });
+
     }
 }
