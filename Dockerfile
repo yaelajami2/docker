@@ -11,8 +11,8 @@ RUN dotnet restore ./api.csproj
 # Copy the rest of the application code
 COPY . ./
 
-# Build the application
-RUN dotnet build ./api.csproj -c Release -o /app/build
+# Publish the application
+RUN dotnet publish ./api.csproj -c Release -o /app/publish
 
 # Use the official .NET runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
@@ -21,7 +21,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 
 # Copy the build output
-COPY --from=build /app/build .
+COPY --from=build /app/publish .
 
 # Run the application
 ENTRYPOINT ["dotnet", "api.dll"]
