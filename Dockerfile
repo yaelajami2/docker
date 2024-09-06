@@ -1,4 +1,4 @@
-# Use the official .NET SDK image
+# Use the official .NET SDK image for building the application
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 
 # Set the working directory
@@ -14,7 +14,7 @@ COPY . ./
 # Publish the application
 RUN dotnet publish ./api.csproj -c Release -o /app/publish
 
-# Use the official .NET runtime image
+# Use the official .NET runtime image for running the application
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 
 # Set the working directory
