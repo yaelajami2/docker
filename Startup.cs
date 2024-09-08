@@ -58,7 +58,26 @@ namespace api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); // Use attribute routing
+            endpoints.MapControllerRoute(
+            name: "default",
+            pattern: 
+            pattern:
+
+            pattern
+
+
+            "{controller}/{action=Index}/{id?}");
+            endpoints.MapFallbackToFile(
+            endpoints.MapFallbackToFile
+
+            endpoints.MapFallbackTo
+
+            endpoints.MapFallback
+
+            endpoints.Map
+
+
+            "index.html"); // Ensure fallback to Angular
             });
         }
     }
