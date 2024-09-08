@@ -73,13 +73,14 @@ namespace api
            app.UseEndpoints(endpoints =>
 {
     // Map default controller routes
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller}/{action=Index}/{id?}");
+ app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller}/{action=Index}/{id?}"); // MVC routes
 
-    // Fallback to the Angular index.html for client-side routing
-    endpoints.MapFallbackToFile("index.html");
-});
+        endpoints.MapFallbackToFile("index.html"); // Serve index.html for Angular
+    });
         }
     }
 }
