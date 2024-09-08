@@ -12,13 +12,7 @@ namespace api
         {
             CreateHostBuilder(args).Build().Run();
             var builder = WebApplication.CreateBuilder(args);
-   builder =>
-            {
-                // Allow requests from the specified origin
-                builder.WithOrigins("https://location-client.onrender.com/") // URL of your Angular app
-                       .AllowAnyMethod() // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
-                       .AllowAnyHeader(); // Allow any header in requests
-            });
+
             // Configure services
             builder.Services.AddControllersWithViews();
 
@@ -38,7 +32,6 @@ namespace api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-               app.UseCors("AllowSpecificOrigin"); // Apply the CORS policy defined earlier
             app.UseAuthorization();
 
             app.MapControllerRoute(
