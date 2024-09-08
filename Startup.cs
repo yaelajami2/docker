@@ -21,6 +21,20 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddCors(options =>
+    {
+        // Define a policy named "AllowSpecificOrigin"
+        options.AddPolicy("AllowSpecificOrigin",
+            builder =>
+            {
+                // Allow requests from the specified origin
+                builder.WithOrigins("https://location-client.onrender.com/") // URL of your Angular app
+                       .AllowAnyMethod() // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
+                       .AllowAnyHeader(); // Allow any header in requests
+            });
+    });
+
+  
              services.AddTransient<ManagQuery>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
