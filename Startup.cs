@@ -56,29 +56,16 @@ namespace api
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-            endpoints.MapControllerRoute(
-            name: "default",
-            pattern: 
-            pattern:
+           app.UseEndpoints(endpoints =>
+{
+    // Map default controller routes
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
 
-            pattern
-
-
-            "{controller}/{action=Index}/{id?}");
-            endpoints.MapFallbackToFile(
-            endpoints.MapFallbackToFile
-
-            endpoints.MapFallbackTo
-
-            endpoints.MapFallback
-
-            endpoints.Map
-
-
-            "index.html"); // Ensure fallback to Angular
-            });
+    // Fallback to the Angular index.html for client-side routing
+    endpoints.MapFallbackToFile("index.html");
+});
         }
     }
 }
