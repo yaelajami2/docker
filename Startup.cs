@@ -59,7 +59,7 @@ namespace api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            
+              app.UseCors("AllowSpecificOrigin"); // Apply the CORS policy defined earlier
             // Use Swagger in all environments
             app.UseSwagger();
             app.UseSwaggerUI(c =>
