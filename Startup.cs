@@ -26,7 +26,7 @@ namespace api
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
                 {
-                    builder.WithOrigins("https://location-client.onrender.com") // URL של האפליקציה שלך
+                    builder.WithOrigins("https://location-client.onrender.com", "http://localhost:4200") // URL של האפליקציה שלך
                            .AllowAnyMethod() // התיר כל שיטת HTTP (GET, POST, PUT, DELETE וכו')
                            .AllowAnyHeader(); // התיר כל כותרת בבקשות
                 });
