@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -27,7 +27,24 @@ namespace api.Controllers
         {
 
         }
-     
+        public int ExecuteNonQuery(string sql, CommandType commandType, params SqlParameter[] parameters)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand(sql, sqlConnection))
+                {
+                    command.CommandType = commandType; // סוג הפקודה (SELECT, INSERT, UPDATE, DELETE)
+                    command.Parameters.AddRange(parameters); // הוספת פרמטרים ל־SqlCommand
+
+                    sqlConnection.Open();
+
+                    int rowsAffected = command.ExecuteNonQuery(); // ביצוע השאילתה וקבלת מספר השורות המושפעות
+
+                    return rowsAffected;
+                }
+            }
+        }
+
         public DataTable ExecuteQuery(string sql, CommandType commandType, params SqlParameter[] parameters)
         {
             DataTable dataTable = new DataTable();
